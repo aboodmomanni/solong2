@@ -1,0 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Keys.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/19 13:02:34 by aalmoman          #+#    #+#             */
+/*   Updated: 2026/03/21 11:38:14 by aalmoman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+void	new_move(t_game *game, int new_x, int new_y)
+{
+	mlx_put_image_to_window(game->mlx, game->win, game->background_img,
+		game->player.x * SIZE, game->player.y * SIZE);
+	if (game->collectibles
+		&& game->map[game->player.y][game->player.x] == 'E')
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->exit_img,
+			game->player.x * SIZE, game->player.y * SIZE);
+	}
+	game->player.x = new_x;
+	game->player.y = new_y;
+	mlx_put_image_to_window(game->mlx, game->win,
+		game->player_img, new_x * SIZE, new_y * SIZE);
+	game->moves++;
+	ft_putstr_fd("Moves :", 1);
+	ft_putnbr_fd(game->moves, 1);
+	ft_putstr_fd("\n", 1);
+}
+
+int	movement(t_game *game, int x, int y)
+{
+	int	new_x;
+	int	new_y;
+
+	new_x = game->player.x + x;
+	new_y = game->player.y + y;
+	if (game->map[new_y][new_x] != '1')
+	{
+		new_move(game, new_x, new_y);
+		if (game->map[new_y][new_x] == 'E' && !game->collectibles)
+		{
+			ft_putstr_fd("we did it :", 1);
+			ft_putnbr_fd(game->moves, 1);
+			ft_putstr_fd("\n", 1);
+			free_mlx(game, 1);
+			return (0);
+		}
+	}
+	if (game->map[new_y][new_x] == 'C' && game->collectibles > 0)
+	{
+		game->map[new_y][new_x] = '0';
+		game->collectibles--;
+	}
+	return (1);
+}
+
+int	key_press(int k, t_game *game)
+{
+	if (k == ESC)
+		return (end_game(game));
+	else if (k == W || k == UP)
+		move_up(game);
+	else if (k == A || k == LEFT)
+		move_left(game);
+	else if (k == D || k == RIGHT)
+		move_right(game);
+	else if (k == S || k == DOWN)
+		move_down(game);
+	return (0);
+}

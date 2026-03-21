@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/19 13:02:42 by aalmoman          #+#    #+#             */
+/*   Updated: 2026/03/19 18:00:29 by aalmoman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+int	main(int argc, char **argv)
+{
+	t_game	*game;
+
+	if (argc != 2)
+	{
+		ft_putstr_fd("wrong argument number\n", 1);
+		return (0);
+	}
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (1);
+	game->win = NULL;
+	game->map = NULL;
+	game->mlx = NULL;
+	init_info(argv[1], game);
+	if (!initialize_game(game))
+	{
+		free_mlx(game, 0);
+		return (1);
+	}
+	return (0);
+}
