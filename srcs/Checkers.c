@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:25 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/21 11:37:58 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:43:28 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	cpy_map(t_game *game, int fd)
 	map = (char **)malloc(sizeof(char *) * (game->hight + 1));
 	if (!map)
 		error_with_free(game, 0, "Error!\n", fd);
-	i = 0;
-	while (game->map[i])
+	i = -1;
+	while (game->map[++i])
 	{
 		map[i] = ft_strdup(game->map[i]);
 		if (!map[i])
@@ -88,7 +88,6 @@ void	cpy_map(t_game *game, int fd)
 			free_map(map);
 			error_with_free(game, 0, "Error!\n", fd);
 		}
-		i++;
 	}
 	map[i] = NULL;
 	is_reachable(game, map, fd);

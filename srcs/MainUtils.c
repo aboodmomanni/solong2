@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:49 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/21 11:36:47 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:47:11 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_map(t_game *game, int fd, char *f_name)
 		error_with_free(game, 0, "Error!\nMap content is not correct", fd);
 }
 
-void	render_tiles(t_game *game, int y, int x)
+void	load_symbol(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == '0')
 		mlx_put_image_to_window(game->mlx, game->win,
@@ -68,7 +68,7 @@ void	load_map(t_game *game)
 	{
 		x = -1;
 		while (game->map[y][++x])
-			render_tiles(game, y, x);
+			load_symbol(game, y, x);
 	}
 }
 

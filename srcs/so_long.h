@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:57 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/21 12:26:30 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:47:11 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		find_player(t_game *game);
 void		free_map(char **map);
 void		get_height(t_game *game, char *f_name);
 void		is_reachable(t_game *game, char **map, int fd);
-void		render_tiles(t_game *game, int y, int x);
+void		load_symbol(t_game *game, int y, int x);
 void		check_map(t_game *game, int fd, char *f_name);
 int			validate(char **map);
 void		load_img(t_game *game, int h, int w);

@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:34 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/21 11:38:14 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:45:15 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ void	new_move(t_game *game, int new_x, int new_y)
 
 int	movement(t_game *game, int x, int y)
 {
-	int	new_x;
-	int	new_y;
+	int	newx;
+	int	newy;
 
-	new_x = game->player.x + x;
-	new_y = game->player.y + y;
-	if (game->map[new_y][new_x] != '1')
+	newx = game->player.x + x;
+	newy = game->player.y + y;
+	if (game->map[newy][newx] != '1')
 	{
-		new_move(game, new_x, new_y);
-		if (game->map[new_y][new_x] == 'E' && !game->collectibles)
+		new_move(game, newx, newy);
+		if (game->map[newy][newx] == 'E' && !game->collectibles)
 		{
 			ft_putstr_fd("we did it :", 1);
 			ft_putnbr_fd(game->moves, 1);
@@ -51,9 +51,9 @@ int	movement(t_game *game, int x, int y)
 			return (0);
 		}
 	}
-	if (game->map[new_y][new_x] == 'C' && game->collectibles > 0)
+	if (game->map[newy][newx] == 'C' && game->collectibles > 0)
 	{
-		game->map[new_y][new_x] = '0';
+		game->map[newy][newx] = '0';
 		game->collectibles--;
 	}
 	return (1);
