@@ -14,18 +14,18 @@
 
 void	new_move(t_game *game, int new_x, int new_y)
 {
-	mlx_put_image_to_window(game->mlx, game->win, game->background_img,
+	mlx_put_image_to_window(game->mlx, game->win, game->img.floor,
 		game->player.x * SIZE, game->player.y * SIZE);
 	if (game->collectibles
 		&& game->map[game->player.y][game->player.x] == 'E')
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->exit_img,
+		mlx_put_image_to_window(game->mlx, game->win, game->img.exit,
 			game->player.x * SIZE, game->player.y * SIZE);
 	}
 	game->player.x = new_x;
 	game->player.y = new_y;
 	mlx_put_image_to_window(game->mlx, game->win,
-		game->player_img, new_x * SIZE, new_y * SIZE);
+		game->img.player, new_x * SIZE, new_y * SIZE);
 	game->moves++;
 	ft_putstr_fd("Moves :", 1);
 	ft_putnbr_fd(game->moves, 1);

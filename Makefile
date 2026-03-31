@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 MINIDIR = ./mlx
-SRCS = srcs/main.c srcs/MapMaker.c srcs/MainUtils.c srcs/Checkers.c srcs/Keys.c srcs/actions.c srcs/utils.c srcs/ValidateMap.c srcs/AllFrees.c
+SRCS = main.c MapMaker.c MainUtils.c Checkers.c Keys.c actions.c utils.c ValidateMap.c AllFrees.c
 
 MLX = ./mlx/libmlx.a
 

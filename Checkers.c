@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:25 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/25 16:43:28 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 00:18:46 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	is_reachable(t_game *game, char **map, int fd)
 	int			j;
 	t_player	start;
 
-	i = 0;
 	start.x = game->player.x;
 	start.y = game->player.y;
 	check_path(map, position(start.x, start.y));
-	while (map[i])
+	i = -1;
+	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j])
+		j = -1;
+		while (map[i][++j])
 		{
 			if (map[i][j] == 'P' || map[i][j] == 'E' || map[i][j] == 'C')
 			{
@@ -33,20 +33,16 @@ void	is_reachable(t_game *game, char **map, int fd)
 				error_with_free(game, 0,
 					"Error!\nisnt reachable target\n", fd);
 			}
-			j++;
 		}
-		i++;
 	}
 }
 
-void	check_extension(t_game *game, char *str)
+void	check_ber(t_game *game, char *arg)
 {
-	int		l;
 	char	*t;
 
-	t = str;
-	l = ft_strlen(str) - 4;
-	t += l;
+	t = arg;
+	t += ft_strlen(arg) - 4;
 	if (ft_strncmp(t, ".ber", 4))
 		error_with_free(game, 0, "wrong extension\n", -1);
 }
@@ -63,9 +59,9 @@ void	init_info(char *file, t_game *game)
 		free(game);
 		exit(1);
 	}
-	check_extension(game, file);
+	check_ber(game, file);
 	check_map(game, fd, file);
-	find_player(game);
+	player_pos(game);
 	game->collectibles = count_elements(game->map, 'C');
 	cpy_map(game, fd);
 	close(fd);

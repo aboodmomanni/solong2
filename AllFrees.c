@@ -15,16 +15,16 @@
 int	free_mlx(t_game *game, int code)
 {
 	free_map(game->map);
-	if (game->player_img)
-		mlx_destroy_image(game->mlx, game->player_img);
-	if (game->collect_img)
-		mlx_destroy_image(game->mlx, game->collect_img);
-	if (game->exit_img)
-		mlx_destroy_image(game->mlx, game->exit_img);
-	if (game->wall_img)
-		mlx_destroy_image(game->mlx, game->wall_img);
-	if (game->background_img)
-		mlx_destroy_image(game->mlx, game->background_img);
+	if (game->img.player)
+		mlx_destroy_image(game->mlx, game->img.player);
+	if (game->img.collectible)
+		mlx_destroy_image(game->mlx, game->img.collectible);
+	if (game->img.exit)
+		mlx_destroy_image(game->mlx, game->img.exit);
+	if (game->img.wall)
+		mlx_destroy_image(game->mlx, game->img.wall);
+	if (game->img.floor)
+		mlx_destroy_image(game->mlx, game->img.floor);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

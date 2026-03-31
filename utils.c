@@ -6,13 +6,13 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:03:03 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/21 12:17:55 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 00:19:19 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_height(t_game *game, char *infile)
+void	hight(t_game *game, char *infile)
 {
 	int		i;
 	char	*line;
@@ -32,7 +32,7 @@ void	get_height(t_game *game, char *infile)
 	close(fd);
 }
 
-void	find_player(t_game *game)
+void	player_pos(t_game *game)
 {
 	int	x;
 	int	y;

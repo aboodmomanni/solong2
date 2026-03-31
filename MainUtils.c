@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:49 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/25 16:47:11 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 00:19:19 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_map(t_game *game, int fd, char *f_name)
 {
 	if (fd < 0)
 		error_with_free(game, 0, "Error!\nFailed to open map file", -1);
-	get_height(game, f_name);
+	hight(game, f_name);
 	game->map = (char **)malloc(sizeof(char *) * (game->hight + 1));
 	if (!game->map)
 		error_with_free(game, 0, "Error!\nCould not open space for map", -1);
@@ -29,33 +29,37 @@ void	load_symbol(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == '0')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->background_img, x * SIZE, y * SIZE);
+			game->img.floor, x * SIZE, y * SIZE);
 	else if (game->map[y][x] == '1')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->wall_img, x * SIZE, y * SIZE);
+			game->img.wall, x * SIZE, y * SIZE);
 	else if (game->map[y][x] == 'E')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->exit_img, x * SIZE, y * SIZE);
+			game->img.exit, x * SIZE, y * SIZE);
 	else if (game->map[y][x] == 'P')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->player_img, x * SIZE, y * SIZE);
+			game->img.player, x * SIZE, y * SIZE);
 	else if (game->map[y][x] == 'C')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->collect_img, x * SIZE, y * SIZE);
+			game->img.collectible, x * SIZE, y * SIZE);
 }
 
 void	load_img(t_game *game, int h, int w)
 {
-	game->player_img = mlx_xpm_file_to_image(game->mlx, "./pics/KOBE.xpm",
+	game->img.player = mlx_xpm_file_to_image(game->mlx,
+			"./textures/KOBE.xpm",
 			&w, &h);
-	game->collect_img = mlx_xpm_file_to_image(game->mlx, "./pics/BASKET.xpm",
+	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
+			"./textures/BASKET.xpm",
 			&w, &h);
-	game->exit_img = mlx_xpm_file_to_image(game->mlx, "./pics/RING.xpm", &w,
+	game->img.exit = mlx_xpm_file_to_image(game->mlx,
+			"./textures/RING.xpm", &w,
 			&h);
-	game->wall_img = mlx_xpm_file_to_image(game->mlx, "./pics/WALLS.xpm", &w,
+	game->img.wall = mlx_xpm_file_to_image(game->mlx,
+			"./textures/WALLS.xpm", &w,
 			&h);
-	game->background_img = mlx_xpm_file_to_image(game->mlx,
-			"./pics/FLOOR.xpm", &w, &h);
+	game->img.floor = mlx_xpm_file_to_image(game->mlx,
+			"./textures/FLOOR.xpm", &w, &h);
 }
 
 void	load_map(t_game *game)
@@ -83,8 +87,8 @@ int	initialize_game(t_game *game)
 	if (!game->mlx)
 		return (0);
 	load_img(game, h, w);
-	if (!game->player_img || !game->collect_img || !game->exit_img
-		|| !game->wall_img || !game->background_img)
+	if (!game->img.player || !game->img.collectible || !game->img.exit
+		|| !game->img.wall || !game->img.floor)
 	{
 		ft_putstr_fd("Error!\n", 1);
 		free_mlx(game, 0);

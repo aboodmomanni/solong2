@@ -6,15 +6,15 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:57 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/04/01 00:19:19 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 00:19:51 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../mlx/mlx.h"
-# include "../libft/libft.h"
+# include "mlx/mlx.h"
+# include "libft/libft.h"
 
 # define SIZE		48
 # define ESC		65307
@@ -68,15 +68,15 @@ int			free_mlx(t_game *game, int code);
 void		error_with_free(t_game *game, int code, char *text, int fd);
 void		player_pos(t_game *game);
 void		free_map(char **map);
-void		hight(t_game *game, char *f_name);
+void		hight(t_game *game, char *filee);
 void		is_reachable(t_game *game, char **map, int fd);
 void		load_symbol(t_game *game, int y, int x);
-void		check_map(t_game *game, int fd, char *f_name);
+void		check_map(t_game *game, int fd, char *filee);
 int			validate(char **map);
 void		load_img(t_game *game, int h, int w);
 void		get_map(char **map, int pos, char *line, t_game *game);
 void		check_ber(t_game *game, char *str);
-void		init_info(char *f_name, t_game *game);
+void		init_info(char *filee, t_game *game);
 int			initialize_game(t_game *game);
 void		cpy_map(t_game *game, int fd);
 int			key_press(int keycode, t_game *game);
