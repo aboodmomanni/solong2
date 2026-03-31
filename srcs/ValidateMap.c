@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 19:00:00 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/21 12:16:13 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/03/31 23:32:22 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,12 @@ static int	check_walls(char **map)
 		return (0);
 	i = -1;
 	while (++i < width)
-	{
 		if (map[0][i] != '1' || map[height - 1][i] != '1')
 			return (0);
-	}
 	i = 0;
 	while (++i < height - 1)
-	{
 		if (map[i][0] != '1' || map[i][width - 1] != '1')
 			return (0);
-	}
 	return (1);
 }
 

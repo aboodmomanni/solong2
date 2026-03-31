@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:42 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/19 18:00:29 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/03/31 23:35:04 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,23 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	return (0);
+}
+
+void	read_map_lines(t_game *game, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		null_end(line);
+		get_map(game->map, i, line, game);
+		free(line);
+		i++;
+		line = get_next_line(fd);
+	}
+	game->map[i] = NULL;
+	return ;
 }
