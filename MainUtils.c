@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:49 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/04/01 00:19:19 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:20:47 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	check_map(t_game *game, int fd, char *f_name)
 {
 	if (fd < 0)
-		error_with_free(game, 0, "Error!\nFailed to open map file", -1);
+		error_with_free(game, 0, "Error\n", -1);
 	hight(game, f_name);
 	game->map = (char **)malloc(sizeof(char *) * (game->hight + 1));
 	if (!game->map)
-		error_with_free(game, 0, "Error!\nCould not open space for map", -1);
+		error_with_free(game, 0, "Error\n", -1);
 	read_map_lines(game, fd);
 	if (!validate(game->map))
-		error_with_free(game, 0, "Error!\nMap content is not correct", fd);
+		error_with_free(game, 0, "Error\n", fd);
 }
 
 void	load_symbol(t_game *game, int y, int x)
@@ -76,7 +76,7 @@ void	load_map(t_game *game)
 	}
 }
 
-int	initialize_game(t_game *game)
+int	set_mlx(t_game *game)
 {
 	int	h;
 	int	w;
@@ -93,13 +93,5 @@ int	initialize_game(t_game *game)
 		ft_putstr_fd("Error!\n", 1);
 		free_mlx(game, 0);
 	}
-	game->win = mlx_new_window(game->mlx, game->width * SIZE,
-			game->hight * SIZE, "So Long");
-	if (!game->win)
-		return (0);
-	load_map(game);
-	mlx_hook(game->win, 2, 1L << 0, key_press, game);
-	mlx_hook(game->win, 17, 1L << 17, end_game, game);
-	mlx_loop(game->mlx);
 	return (1);
 }

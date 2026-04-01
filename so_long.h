@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:57 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/04/01 00:19:51 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:14:37 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		check_map(t_game *game, int fd, char *filee);
 int			validate(char **map);
 void		load_img(t_game *game, int h, int w);
 void		get_map(char **map, int pos, char *line, t_game *game);
-void		check_ber(t_game *game, char *str);
+void		check_ber(t_game *game, char *str, int fd);
 void		init_info(char *filee, t_game *game);
 int			initialize_game(t_game *game);
 void		cpy_map(t_game *game, int fd);
@@ -90,5 +90,7 @@ void		check_path(char **map, t_pos tile);
 t_pos		position(int col, int row);
 void		read_map_lines(t_game *game, int fd);
 int			count_elements(char **map, char c);
+int			set_game(t_game *game);
+int			set_mlx(t_game *game);
 
 #endif

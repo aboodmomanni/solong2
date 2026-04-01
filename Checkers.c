@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:02:25 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/04/01 00:18:46 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:21:16 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,17 @@ void	is_reachable(t_game *game, char **map, int fd)
 	}
 }
 
-void	check_ber(t_game *game, char *arg)
+void	check_ber(t_game *game, char *arg, int fd)
 {
 	char	*t;
 
 	t = arg;
 	t += ft_strlen(arg) - 4;
 	if (ft_strncmp(t, ".ber", 4))
+	{
+		close(fd);
 		error_with_free(game, 0, "wrong extension\n", -1);
+	}
 }
 
 void	init_info(char *file, t_game *game)
@@ -59,7 +62,7 @@ void	init_info(char *file, t_game *game)
 		free(game);
 		exit(1);
 	}
-	check_ber(game, file);
+	check_ber(game, file, fd);
 	check_map(game, fd, file);
 	player_pos(game);
 	game->collectibles = count_elements(game->map, 'C');
