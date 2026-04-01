@@ -6,7 +6,7 @@
 /*   By: aalmoman <aalmoman@amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 19:21:55 by aalmoman          #+#    #+#             */
-/*   Updated: 2026/03/21 11:38:26 by aalmoman         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:28:10 by aalmoman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	get_map(char **map, int pos, char *line, t_game *game)
 	map[pos] = malloc(ft_strlen(line) + 1);
 	if (!map[pos])
 		error_with_free(game, 0, "Error!\n", -1);
-	while (line[i] && line[i] != '\n')
+	while (line[i])
 	{
 		map[pos][i] = line[i];
 		i++;
