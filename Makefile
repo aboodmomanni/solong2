@@ -1,8 +1,6 @@
 NAME = so_long.a
-CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
-MINIDIR = ./mlx
+MLXDIR = ./mlx
 SRCS = main.c MapMaker.c MainUtils.c Checkers.c Keys.c actions.c utils.c ValidateMap.c AllFrees.c
 
 MLX = ./mlx/libmlx.a
@@ -16,18 +14,18 @@ all: ${NAME}
 
 ${NAME}: ${OBJ}
 		make -C ${LIBFT_DIR}
-		make -C ${MINIDIR}
+		make -C ${MLXDIR}
 		ar rcs ${NAME} ${OBJ}
-		${CC} ${CFLAGS} -o so_long ${SRCS} ${LIBFT_NAME} ${MLX} ${NAME} -lX11 -lXext -lm
+		cc ${CFLAGS} -o so_long ${SRCS} ${LIBFT_NAME} ${MLX} ${NAME} -lX11 -lXext -lm
 		
 clean:
 		make clean -C ${LIBFT_DIR}
-		make clean -C ${MINIDIR}
-		${RM} ${OBJ}
+		make clean -C ${MLXDIR}
+		rm -f ${OBJ}
 
 fclean: clean
 		make fclean -C ${LIBFT_DIR}
-		${RM} ${NAME} so_long
+		rm -f ${NAME} so_long
 
 re: fclean all
 
